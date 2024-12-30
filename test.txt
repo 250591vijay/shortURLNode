@@ -1,0 +1,38 @@
+
+Design the URl shortener services that takes in a valid URL and
+returs a shortened URL, redirecting the user to the previously provided URl.
+
+also keep of the total visits/clicks on the URl.
+
+
+Routes:
+
+POST/URL - Generate the new short URL and returs the shortened URL in the formate
+        example.com/random-id.
+GET/:id - Redirects the users to the original URL
+GET/URL/analytics/:id - returns the clicks for the provide short id
+***
+app.get("/test",async (req,res)=>{
+    const allUrls= await URL.find({})
+    return res.end(`
+        <html>
+        <body>
+        <ol>
+        ${allUrls.map(url =>
+            `<li>${url.shortId}- ${url.redirectURL} - ${url.visitHistory.length}</li>`
+        ).join("")}
+        </ol>
+        </body>
+        </html>`)
+  })
+***
+Web page render through server side
+
+Templeting Engeins
+EJS - Embedded JavaScript templating
+pug
+handlebars
+
+  <!-- <% urls.forEach(url => { %>
+    <li><%= url.shortId%></li>
+    <% }) %> -->
